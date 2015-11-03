@@ -2,6 +2,7 @@
 
 namespace App\Action;
 
+use App\Model\Event\EventRepositoryInterface;
 use App\Model\Page\PageRepositoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -19,10 +20,16 @@ class PageAction
      */
     private $pageRepository;
 
-    public function __construct(TemplateRendererInterface $templateRenderer, PageRepositoryInterface $pageRepository)
+    /**
+     * @var EventRepositoryInterface
+     */
+    private $eventRepository;
+
+    public function __construct(TemplateRendererInterface $templateRenderer, PageRepositoryInterface $pageRepository, EventRepositoryInterface $eventRepository)
     {
         $this->templateRenderer = $templateRenderer;
         $this->pageRepository = $pageRepository;
+        $this->eventRepository = $eventRepository;
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
@@ -35,8 +42,11 @@ class PageAction
             return $next($request, $response);
         }
 
-        $params = $result->getMetadata();
-        $params['html'] = $result->getHtml();
+        $params = array_merge($result->getMetadata(), [
+            'html' => $result->getHtml(),
+            'futureEvents' => $this->eventRepository->getFuture(),
+            'pastEvents' => $this->eventRepository->getPast(),
+        ]);
 
         $template = isset($params['template']) ? $params['template'] : 'page';
 

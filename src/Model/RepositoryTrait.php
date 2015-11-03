@@ -30,12 +30,12 @@ trait RepositoryTrait
 
     public function getAll()
     {
-        $files = glob($directory . '*.md');
+        $files = glob($this->directory . '*.md');
         sort($files);
 
         $items = [];
         foreach ($files as $file) {
-            $id = substr($file, strlen($directory), -3);
+            $id = substr($file, strlen($this->directory), -3);
             $items[$id] = $this->get($id);
         }
 

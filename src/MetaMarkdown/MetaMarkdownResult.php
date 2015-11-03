@@ -30,6 +30,34 @@ class MetaMarkdownResult
     }
 
     /**
+     * Check the metadata for a value.
+     *
+     * @param string $key
+     *
+     * @return bool
+     */
+    public function has($key)
+    {
+        return isset($this->metadata[$key]);
+    }
+
+    /**
+     * Get metadata value.
+     *
+     * @param string $key
+     *
+     * @return mixed
+     */
+    public function get($key)
+    {
+        if (!$this->has($key)) {
+            throw new \Exception('Key does not exist: ' . $key);
+        }
+
+        return $this->metadata[$key];
+    }
+
+    /**
      * Get the metadata.
      *
      * @return array The metadata.

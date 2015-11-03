@@ -7,14 +7,24 @@
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
         <h3>Upcoming Events</h3>
         <ul>
-            <li>Event A</li>
-            <li>Event B</li>
+            <?php foreach ($futureEvents as $id => $futureEvent): ?>
+                <li>
+                    <a href="/event/<?=$id?>">
+                        <?=$this->e($futureEvent->get('title'))?>
+                    </a>
+                </li>
+            <?php endforeach; ?>
         </ul>
 
         <h3>Past Events</h3>
         <ul>
-            <li>Event C</li>
-            <li>Event D</li>
+            <?php foreach ($pastEvents as $id => $pastEvent): ?>
+                <li>
+                    <a href="/event/<?=$id?>">
+                        <?=$this->e($pastEvent->get('title'))?>
+                    </a>
+                </li>
+            <?php endforeach; ?>
         </ul>
     </div>
 </div>
