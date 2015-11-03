@@ -12,6 +12,8 @@ This app is currently being developed. It isn't ready yet.
 
 `content/page/{id}.md`
 
+Example `content/page/index.md`:
+
 ```md
 ---
 title: Welcome to our meetup group
@@ -30,6 +32,8 @@ This is some welcome text. This is some welcome text.
 `content/event/{id}.md`
 
 `{id}` must contain the `Y-m-d` prefix.
+
+Example `content/page/2015-12-25-christmas-meetup.md`:
 
 ```md
 ---
@@ -50,6 +54,8 @@ Come and join us on Christmas day!
 
 `content/talk/{id}.md`
 
+Example `content/talk/fire-drone.md`:
+
 ```md
 ---
 title: How to create a drone that spits fire
@@ -64,6 +70,8 @@ Learn how to create a fire spitting drone using a Raspberry PI, 10 hair dryers a
 ## Add Speakers
 
 `content/speaker/{id}.md`
+
+Example `content/speaker/alice.md`:
 
 ```md
 ---
