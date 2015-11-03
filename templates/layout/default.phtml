@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title><?=$this->e($title)?></title>
-        <meta name="description" content="<?=$this->e($description)?>" />
+        <?php if (isset($description)): ?><meta name="description" content="<?=$this->e($description)?>" /><?php endif; ?>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
@@ -12,17 +12,18 @@
     <body>
         <nav class="navbar navbar-default">
             <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/">Home</a>
-                </div>
-
                 <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="#">Link</a>
+                    <li>
+                        <a href="#" class="active">Home</a>
                     </li>
                     <li>
-                        <a href="#">Link</a>
+                        <a href="#">Code of Conduct</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
                     </li>
                 </li>
             </div>

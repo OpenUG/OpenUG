@@ -1,0 +1,23 @@
+<?php $this->layout('layout::default', ['title' => $title, 'description' => $description]) ?>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+        <?=$html?>
+
+        <?php if (isset($meetup)): ?>
+            <p><a href="<?=$this->escape($meetup)?>">RSVP on meetup</a></p>
+        <?php endif; ?>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <?php foreach ($talks as $talk): ?>
+            <h3><?=$this->escape($talk['talk']->get('title'))?></h3>
+            <p><i>By <?=$this->escape($talk['speaker']->get('name'))?></i></p>
+
+            <?=$talk['talk']->getHtml()?>
+
+            <?php if ($talk['talk']->has('joind.in')): ?>
+                <a href="<?=$this->escape($talk['talk']->get('joind.in'))?>">Leave feedback on Joind.in</a>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+</div>
