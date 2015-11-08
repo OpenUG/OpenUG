@@ -45,7 +45,13 @@ class MetaMarkdown
      */
     private function getMetadata($yaml)
     {
-        return Yaml::parse($yaml);
+        $result = Yaml::parse($yaml);
+
+        if (!is_array($result)) {
+            throw new \Exception('Expected YAML to convert to array, instead got ' . gettype($result));
+        }
+
+        return $result;
     }
 
     /**

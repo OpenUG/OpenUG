@@ -13,8 +13,8 @@ class Repository implements RepositoryInterface
     /**
      * Repository constructor.
      *
-     * @param RepositoryManagerInterface $manager   The repository manager.
-     * @param string                     $directory The directory containing the entities.
+     * @param RepositoryManagerInterface $repositoryManager The repository manager.
+     * @param string                     $directory         The directory containing the entities.
      */
     public function __construct(RepositoryManagerInterface $repositoryManager, $directory)
     {
