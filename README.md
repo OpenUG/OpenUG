@@ -1,6 +1,9 @@
 # OpenUG
 
+[![Build Status](https://travis-ci.org/AndrewCarterUK/OpenUG.svg)](https://travis-ci.org/AndrewCarterUK/OpenUG)
+[![Code Coverage](https://scrutinizer-ci.com/g/AndrewCarterUK/OpenUG/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/AndrewCarterUK/OpenUG/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/AndrewCarterUK/OpenUG/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/AndrewCarterUK/OpenUG/?branch=master)
+[![Code Climate](https://codeclimate.com/github/AndrewCarterUK/OpenUG/badges/gpa.svg)](https://codeclimate.com/github/AndrewCarterUK/OpenUG)
 
 A web app for user groups.
 
