@@ -3,8 +3,8 @@
 return [
     'dependencies' => [
         'factories' => [
-            App\Model\RepositoryManager::class => App\Model\RepositoryManagerFactory::class,
-            Zend\Expressive\Application::class => Zend\Expressive\Container\ApplicationFactory::class, 
+            App\Model\RepositoryManagerInterface::class => App\Model\RepositoryManagerFactory::class,
+            Zend\Expressive\Application::class => Zend\Expressive\Container\ApplicationFactory::class,
         ],
     ],
 

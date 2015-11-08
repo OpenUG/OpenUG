@@ -2,7 +2,7 @@
 
 namespace App\Action;
 
-use App\Model\Manager;
+use App\Model\RepositoryManagerInterface;
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
@@ -11,8 +11,8 @@ class PageActionFactory
     public function __invoke(ContainerInterface $container)
     {
         $templateRenderer = $container->get(TemplateRendererInterface::class);
-        $manager = $container->get(Manager::class);
+        $repositoryManager = $container->get(RepositoryManagerInterface::class);
 
-        return new PageAction($templateRenderer, $manager);
+        return new PageAction($templateRenderer, $repositoryManager);
     }
 }

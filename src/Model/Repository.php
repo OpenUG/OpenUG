@@ -6,16 +6,16 @@ use App\MetaMarkdown\MetaMarkdown;
 
 class Repository implements RepositoryInterface
 {
-    private $manager;
+    private $repositoryManager;
     private $directory;
     private $metaMarkdown;
 
     /**
      * {@inheritdoc}
      */
-    public function __construct(Manager $manager, $directory)
+    public function __construct(RepositoryManagerInterface $repositoryManager, $directory)
     {
-        $this->manager = $manager;
+        $this->repositoryManager = $repositoryManager;
         $this->directory = $directory;
         $this->metaMarkdown = new MetaMarkdown;
     }
@@ -43,10 +43,10 @@ class Repository implements RepositoryInterface
     {
         foreach ($metadata as $key => $value) {
             if (is_string($value)) {
-                $result = preg_match_all('/^@([a-Z0-9\-_]+):([a-Z0-9\-_]+)$/', $content, $matches);
+                $result = preg_match_all('/^\s*@([^:\s]+):([^:\s]+)\s*$/', $value, $matches);
 
                 if (1 === $result) {
-                    $metadata[$key] = $this->manager->getRepository($matches[1][0])->get($matches[2][0]);
+                    $metadata[$key] = new LazyLoadEntity($this->repositoryManager->getRepository($matches[1][0]), $matches[2][0]);
                 }
             } elseif (is_array($value)) {
                 $metadata[$key] = $this->mapMetadata($value);

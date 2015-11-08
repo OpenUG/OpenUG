@@ -2,7 +2,7 @@
 
 namespace App\Action;
 
-use App\Model\Manager;
+use App\Model\RepositoryManagerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
@@ -15,14 +15,14 @@ class PageAction
     private $templateRenderer;
 
     /**
-     * @var Manager
+     * @var RepositoryManagerInterface
      */
-    private $manager;
+    private $repositoryManager;
 
-    public function __construct(TemplateRendererInterface $templateRenderer, Manager $manager)
+    public function __construct(TemplateRendererInterface $templateRenderer, RepositoryManagerInterface $repositoryManager)
     {
         $this->templateRenderer = $templateRenderer;
-        $this->manager = $manager;
+        $this->repositoryManager = $repositoryManager;
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
@@ -30,12 +30,12 @@ class PageAction
         $id = $request->getAttribute('id', 'index');
 
         try {
-            $page = $this->manager->getRepository('page')->get($id);
+            $page = $this->repositoryManager->getRepository('page')->get($id);
         } catch (\Exception $exception) {
             return $next($request, $response);
         }
 
-        $eventRepository = $this->manager->getRepository('event');
+        $eventRepository = $this->repositoryManager->getRepository('event');
 
         $params = [
             'page' => $page,

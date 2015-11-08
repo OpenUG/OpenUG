@@ -1,6 +1,6 @@
 ---
 title: How to create a drone that spits fire
-speaker: alice
+speaker: @speaker:alice
 event: @event:2015-12-25-christmas-meetup
 joind.in: http://joind.in/blah
 ---

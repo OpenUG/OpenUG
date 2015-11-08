@@ -6,11 +6,11 @@ interface RepositoryInterface
 {
     /**
      * Repository constructor.
-     * 
-     * @param Manager $manager   The repository manager.
-     * @param string  $directory The directory containing the entities.
+     *
+     * @param RepositoryManagerInterface $manager   The repository manager.
+     * @param string                     $directory The directory containing the entities.
      */
-    public function __construct(Manager $manager, $directory);
+    public function __construct(RepositoryManagerInterface $repositoryManager, $directory);
 
     public function get($id);
 

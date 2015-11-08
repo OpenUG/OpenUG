@@ -2,24 +2,27 @@
 
 namespace App\Action;
 
-use App\Model\Manager;
+use App\Model\RepositoryManagerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
 class EventAction
 {
+    /**
+     * @var TemplateRendererInterface
+     */
     private $templateRenderer;
 
     /**
      * @var RepositoryManagerInterface
      */
-    private $manager;
+    private $repositoryManager;
 
-    public function __construct(TemplateRendererInterface $templateRenderer, RepositoryManagerInterface $manager)
+    public function __construct(TemplateRendererInterface $templateRenderer, RepositoryManagerInterface $repositoryManager)
     {
         $this->templateRenderer = $templateRenderer;
-        $this->manager = $manager;
+        $this->repositoryManager = $repositoryManager;
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
@@ -27,7 +30,7 @@ class EventAction
         $id = $request->getAttribute('id');
 
         try {
-            $event = $this->manager->getRepository('event')->get($id);
+            $event = $this->repositoryManager->getRepository('event')->get($id);
         } catch (\Exception $exception) {
             return $next($request, $response);
         }
