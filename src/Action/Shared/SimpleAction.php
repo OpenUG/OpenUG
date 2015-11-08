@@ -1,19 +1,26 @@
 <?php
 
-namespace App\Action;
+namespace App\Action\Shared;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 /**
- * Handles requests for pages.
+ * Handles requests for speaker pages.
  */
-class PageAction
+abstract class SimpleAction
 {
-    use Shared\ActionTrait;
+    use ActionTrait;
 
     /**
-     * Handle a request for a page.
+     * Returns the repository name to be used by the action.
+     *
+     * @return string The repository name.
+     */
+    abstract protected function getRepositoryName();
+
+    /**
+     * Handle a request for a speaker page.
      *
      * @param  ServerRequestInterface $request  The request.
      * @param  ResponseInterface      $response The response.
@@ -23,26 +30,18 @@ class PageAction
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
-        $id = $request->getAttribute('id', 'index');
+        $id = $request->getAttribute('id');
+        $repositoryName = $this->getRepositoryName();
 
         try {
-            $page = $this->repositoryManager->getRepository('page')->get($id);
+            $entity = $this->repositoryManager->getRepository($repositoryName)->get($id);
         } catch (\Exception $exception) {
             return $next($request, $response);
         }
 
-        $eventRepository = $this->repositoryManager->getRepository('event');
+        $template = $entity->has('template') ? $entity->get('template') : $repositoryName;
 
-        $params = [
-            'site' => $this->site,
-            'page' => $page,
-            'futureEvents' => $eventRepository->getFuture(),
-            'pastEvents' => $eventRepository->getPast(),
-        ];
-
-        $template = $page->has('template') ? $page->get('template') : 'page';
-
-        $html = $this->templateRenderer->render('app::' . $template, $params);
+        $html = $this->templateRenderer->render('app::' . $template, ['site' => $this->site, $repositoryName => $entity]);
 
         $response->getBody()->write($html);
         return $response->withHeader('Content-Type', 'text/html');

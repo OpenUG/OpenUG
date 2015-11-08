@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Action;
+namespace App\Action\Shared;
 
 use App\Model\Entity;
 use App\Model\RepositoryManagerInterface;

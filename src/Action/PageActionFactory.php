@@ -5,7 +5,7 @@ namespace App\Action;
 /**
  * Factory class for creating the page handler.
  */
-class PageActionFactory extends ActionFactory
+class PageActionFactory extends Shared\ActionFactory
 {
     public function __construct()
     {
