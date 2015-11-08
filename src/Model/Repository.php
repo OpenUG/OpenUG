@@ -11,7 +11,10 @@ class Repository implements RepositoryInterface
     private $metaMarkdown;
 
     /**
-     * {@inheritdoc}
+     * Repository constructor.
+     *
+     * @param RepositoryManagerInterface $manager   The repository manager.
+     * @param string                     $directory The directory containing the entities.
      */
     public function __construct(RepositoryManagerInterface $repositoryManager, $directory)
     {
