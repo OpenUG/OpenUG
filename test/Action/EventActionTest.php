@@ -32,7 +32,7 @@ class EventActionTest extends \PHPUnit_Framework_TestCase
         $templateRenderer
             ->expects($this->once())
             ->method('render')
-            ->with('app::event', ['site' => $config->site, 'event' => $event])
+            ->with('app::event', ['site' => $site, 'event' => $event])
             ->willReturn($templateResult);
 
         $container = new Container([
