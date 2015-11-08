@@ -5,10 +5,22 @@ namespace App\Action;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
+/**
+ * Handles requests for pages.
+ */
 class PageAction
 {
     use ActionTrait;
 
+    /**
+     * Handle a request for a page.
+     *
+     * @param  ServerRequestInterface $request  The request.
+     * @param  ResponseInterface      $response The response.
+     * @param  callable               $next     The next middleware in the chain.
+     *
+     * @return ResponseInterface $response The response.
+     */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
         $id = $request->getAttribute('id', 'index');

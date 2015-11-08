@@ -6,6 +6,9 @@ use App\Model\RepositoryManagerInterface;
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
+/**
+ * Contains the shared code for creating the action classes.
+ */
 abstract class ActionFactory
 {
     /**
@@ -13,6 +16,11 @@ abstract class ActionFactory
      */
     private $actionClass;
 
+    /**
+     * Constructor.
+     *
+     * @param string $actionClass The action class to instantiate.
+     */
     protected function __construct($actionClass)
     {
         $this->actionClass = $actionClass;
@@ -21,9 +29,9 @@ abstract class ActionFactory
     /**
      * Create the action.
      *
-     * @param ContainerInterface $container
+     * @param ContainerInterface $container The app container.
      *
-     * @return callable
+     * @return callable The action class.
      */
     public function __invoke(ContainerInterface $container)
     {
