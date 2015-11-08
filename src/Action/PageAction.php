@@ -2,35 +2,12 @@
 
 namespace App\Action;
 
-use App\Model\Entity;
-use App\Model\RepositoryManagerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Expressive\Template\TemplateRendererInterface;
 
 class PageAction
 {
-    /**
-     * @var TemplateRendererInterface
-     */
-    private $templateRenderer;
-
-    /**
-     * @var RepositoryManagerInterface
-     */
-    private $repositoryManager;
-
-    /**
-     * @var Entity
-     */
-    private $site;
-
-    public function __construct(TemplateRendererInterface $templateRenderer, RepositoryManagerInterface $repositoryManager, Entity $site)
-    {
-        $this->templateRenderer = $templateRenderer;
-        $this->repositoryManager = $repositoryManager;
-        $this->site = $site;
-    }
+    use ActionTrait;
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {

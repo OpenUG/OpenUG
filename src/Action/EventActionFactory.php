@@ -2,25 +2,10 @@
 
 namespace App\Action;
 
-use App\Model\RepositoryManagerInterface;
-use Interop\Container\ContainerInterface;
-use Zend\Expressive\Template\TemplateRendererInterface;
-
-class EventActionFactory
+class EventActionFactory extends ActionFactory
 {
-    /**
-     * Create the EventAction.
-     *
-     * @param ContainerInterface $container
-     *
-     * @return EventAction
-     */
-    public function __invoke(ContainerInterface $container)
+    public function __construct()
     {
-        $templateRenderer = $container->get(TemplateRendererInterface::class);
-        $repositoryManager = $container->get(RepositoryManagerInterface::class);
-        $site = $container->get('config')->site;
-
-        return new EventAction($templateRenderer, $repositoryManager, $site);
+        parent::__construct(EventAction::class);
     }
 }
