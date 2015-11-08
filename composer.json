@@ -2,7 +2,10 @@
     "name": "andrewcarteruk/openug",
     "type": "project",
     "homepage": "https://github.com/AndrewCarterUK/OpenUG",
-    "license": "BSD-3-CLAUSE",
+    "license": [
+        "MIT",
+        "BSD-3-CLAUSE"
+    ],
     "authors": [
         {
             "name": "Andrew Carter",
@@ -16,11 +19,10 @@
         "zendframework/zend-servicemanager": "^2.5",
         "ocramius/proxy-manager": "^1.0",
         "zendframework/zend-expressive-platesrenderer": "^0.1",
-        "league/commonmark": "^0.11.3"
+        "league/commonmark": "^0.11.3",
+        "symfony/yaml": "^2.7"
     },
     "require-dev": {
-        "composer/composer": ">=1.0.0-alpha10",
-        "phpunit/phpunit": "^4.8",
         "filp/whoops": "^1.1"
     },
     "autoload": {
