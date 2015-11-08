@@ -6,7 +6,7 @@ use App\Model\RepositoryManagerInterface;
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
-class PageActionFactory
+class SpeakerActionFactory
 {
     public function __invoke(ContainerInterface $container)
     {
@@ -14,6 +14,6 @@ class PageActionFactory
         $repositoryManager = $container->get(RepositoryManagerInterface::class);
         $site = $container->get('config')->site;
 
-        return new PageAction($templateRenderer, $repositoryManager, $site);
+        return new SpeakerAction($templateRenderer, $repositoryManager, $site);
     }
 }

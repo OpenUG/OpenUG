@@ -1,12 +1,14 @@
 ---
 title: Christmas Meetup
 description: We are all meeting at Christmas!
-joind.in: http://joind.in/fooooo
-meetup: http://meetup.com/brap
+joind.in: http://joind.in/
+meetup: http://meetup.com/
 talks:
     - @talk:fire-drone
 ---
 
 # Christmas Meetup
 
-Come and join us on Christmas day!
+This is an example event for Christmas Day, 2015. Links for joind.in and meetup.com will appear below if they're present in the metadata section of this event.
+
+If present, event talks will also appear on the right hand side of this page.

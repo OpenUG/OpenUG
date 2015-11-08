@@ -1,8 +1,10 @@
 ---
-title: About our meetup group
+title: About Local User Group
 description: About us
 ---
 
 # About Us
 
-la la la la
+This page should be used to give information about your Local User Group.
+
+This could be when, where and why you meet. It could also contain sponsorship information or any other information you think is important to tell visitors.

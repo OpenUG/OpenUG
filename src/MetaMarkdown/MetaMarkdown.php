@@ -23,7 +23,7 @@ class MetaMarkdown
      */
     public function __invoke($content)
     {
-        $result = preg_match_all('/^---\n(.+)\n---(.+)$/s', $content, $matches);
+        $result = preg_match_all('/^---\n(.+?(?=\n---))\n---(.+)$/s', $content, $matches);
 
         if ($result === 1) {
             $metadata = $this->getMetadata($matches[1][0]);

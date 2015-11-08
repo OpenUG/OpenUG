@@ -9,12 +9,12 @@ return [
     ],
 
     'repositories' => [
+        'page' => [
+            'path' => 'content/page/',
+        ],
         'event' => [
             'class' => App\Model\Event\EventRepository::class,
             'path' => 'content/event/',
-        ],
-        'page' => [
-            'path' => 'content/page/',
         ],
         'speaker' => [
             'path' => 'content/speaker/',
@@ -23,4 +23,6 @@ return [
             'path' => 'content/talk/',
         ],
     ],
+
+    'site' => new App\Model\Entity('site', Symfony\Component\Yaml\Yaml::parse('content/site.yml')),
 ];

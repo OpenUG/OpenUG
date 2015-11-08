@@ -20,15 +20,15 @@ return [
             'allowed_methods' => ['GET'],
         ],
         [
-            'name' => 'speaker',
-            'path' => '/speaker/{id}',
-            'middleware' => App\Action\SpeakerAction::class,
-            'allowed_methods' => ['GET'],
-        ],
-        [
             'name' => 'event',
             'path' => '/event/{id}',
             'middleware' => App\Action\EventAction::class,
+            'allowed_methods' => ['GET'],
+        ],
+        [
+            'name' => 'speaker',
+            'path' => '/speaker/{id}',
+            'middleware' => App\Action\SpeakerAction::class,
             'allowed_methods' => ['GET'],
         ],
     ],

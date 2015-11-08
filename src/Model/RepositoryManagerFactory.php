@@ -8,6 +8,6 @@ class RepositoryManagerFactory
 {
     public function __invoke(ContainerInterface $container)
     {
-        return new RepositoryManager($container->get('config')['repositories']);
+        return new RepositoryManager($container->get('config')->repositories);
     }
 }

@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
-class PageAction
+class SpeakerAction
 {
     /**
      * @var TemplateRendererInterface
@@ -37,23 +37,14 @@ class PageAction
         $id = $request->getAttribute('id', 'index');
 
         try {
-            $page = $this->repositoryManager->getRepository('page')->get($id);
+            $speaker = $this->repositoryManager->getRepository('speaker')->get($id);
         } catch (\Exception $exception) {
             return $next($request, $response);
         }
 
-        $eventRepository = $this->repositoryManager->getRepository('event');
+        $template = $speaker->has('template') ? $speaker->get('template') : 'speaker';
 
-        $params = [
-            'site' => $this->site,
-            'page' => $page,
-            'futureEvents' => $eventRepository->getFuture(),
-            'pastEvents' => $eventRepository->getPast(),
-        ];
-
-        $template = $page->has('template') ? $page->get('template') : 'page';
-
-        $html = $this->templateRenderer->render('app::' . $template, $params);
+        $html = $this->templateRenderer->render('app::' . $template, ['site' => $this->site, 'speaker' => $speaker]);
 
         $response->getBody()->write($html);
         return $response->withHeader('Content-Type', 'text/html');

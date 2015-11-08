@@ -42,7 +42,7 @@ description: We are all meeting at Christmas!
 joind.in: http://joind.in/fooooo
 meetup: http://meetup.com/brap
 talks:
-    - fire-drone
+    - @talk:fire-drone
 ---
 
 # Christmas Meetup
@@ -59,8 +59,8 @@ Example `content/talk/fire-drone.md`:
 ```md
 ---
 title: How to create a drone that spits fire
-speaker: alice
-event: 2015-12-25-christmas-meetup
+speaker: @speaker:alice
+event: @event:2015-12-25-christmas-meetup
 joind.in: http://joind.in/blah
 ---
 
@@ -79,7 +79,7 @@ name: Alice
 from: United Kingdom
 skills: PHP, HTML, CSS, JS
 talks:
-    - fire-drone
+    - @talk:fire-drone
 ---
 
 Alice is a student of some university. In her spare time she saves polar bears and creates drones that spit fire.

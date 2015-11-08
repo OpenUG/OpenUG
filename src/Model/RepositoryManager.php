@@ -8,10 +8,10 @@ class RepositoryManager implements RepositoryManagerInterface
 
     /**
      * Constructor.
-     * 
+     *
      * This must be passed an associative array of repository objects where the
      * key of each repository in the array is its name.
-     * 
+     *
      * @param array[] $repositoryDescriptor The repositories.
      */
     public function __construct(array $repositoryDescriptor)
@@ -27,11 +27,11 @@ class RepositoryManager implements RepositoryManagerInterface
 
     /**
      * Retrieve a repository.
-     * 
+     *
      * @param string $name The name of the repository.
-     * 
+     *
      * @return RepositoryInterface
-     * 
+     *
      * @throws \Exception If the repository has not been registered
      */
     public function getRepository($name)

@@ -2,6 +2,7 @@
 
 namespace App\Action;
 
+use App\Model\Entity;
 use App\Model\RepositoryManagerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -19,10 +20,16 @@ class EventAction
      */
     private $repositoryManager;
 
-    public function __construct(TemplateRendererInterface $templateRenderer, RepositoryManagerInterface $repositoryManager)
+    /**
+     * @param Entity
+     */
+    private $site;
+
+    public function __construct(TemplateRendererInterface $templateRenderer, RepositoryManagerInterface $repositoryManager, Entity $site)
     {
         $this->templateRenderer = $templateRenderer;
         $this->repositoryManager = $repositoryManager;
+        $this->site = $site;
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
@@ -37,7 +44,7 @@ class EventAction
 
         $template = $event->has('template') ? $event->get('template') : 'event';
 
-        $html = $this->templateRenderer->render('app::' . $template, ['event' => $event]);
+        $html = $this->templateRenderer->render('app::' . $template, ['site' => $this->site, 'event' => $event]);
 
         $response->getBody()->write($html);
         return $response->withHeader('Content-Type', 'text/html');
