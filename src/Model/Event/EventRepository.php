@@ -36,7 +36,7 @@ class EventRepository extends Repository implements EventRepositoryInterface
 
         foreach ($events as $id => $event) {
             if ($past ? strcmp($id, $date) < 0 : strcmp($id, $date) >= 0) {
-                $filteredEvents[] = $event;
+                $filteredEvents[$id] = $event;
             }
         }
 
