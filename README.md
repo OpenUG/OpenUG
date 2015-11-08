@@ -1,5 +1,7 @@
 # OpenUG
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/AndrewCarterUK/OpenUG/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/AndrewCarterUK/OpenUG/?branch=master)
+
 A web app for user groups.
 
 ## Status
@@ -16,15 +18,20 @@ Example `content/page/index.md`:
 
 ```md
 ---
-title: Welcome to our meetup group
-description: We meet occasionally
+title: Welcome to Local User Group
+description: This is an example website for a user group
 ---
 
-# Welcome to our meetup group
+# Welcome to Local User Group
 
-## We meet occasionally
+This is an example website for a user group made using [OpenUG][OpenUG].
 
-This is some welcome text. This is some welcome text.
+This website can be modified by editing the files in the `content` directory.
+
+To edit this page, look for the `content/page/index.md` file. It should look like this:
+
+
+[OpenUG]: http://github.com/AndrewCarterUK/OpenUG
 ```
 
 ## Add Events
@@ -39,15 +46,17 @@ Example `content/page/2015-12-25-christmas-meetup.md`:
 ---
 title: Christmas Meetup
 description: We are all meeting at Christmas!
-joind.in: http://joind.in/fooooo
-meetup: http://meetup.com/brap
+joind.in: http://joind.in/
+meetup: http://meetup.com/
 talks:
     - @talk:fire-drone
 ---
 
 # Christmas Meetup
 
-Come and join us on Christmas day!
+This is an example event for Christmas Day, 2015. Links for joind.in and meetup.com will appear below if they're present in the metadata section of this event.
+
+If present, event talks will also appear on the right hand side of this page.
 ```
 
 ## Add Talks
@@ -80,6 +89,13 @@ from: United Kingdom
 skills: PHP, HTML, CSS, JS
 talks:
     - @talk:fire-drone
+---
+
+# Speaker Profile: Alice
+
+Alice is an example speaker at your user group. You can use this space to write a bio for Alice.
+
+Any talks listed in the metadata section will appear on the right hand side.
 ---
 
 Alice is a student of some university. In her spare time she saves polar bears and creates drones that spit fire.
