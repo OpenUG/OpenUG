@@ -2,8 +2,7 @@
 
 namespace App\Action;
 
-use App\Model\Event\EventRepositoryInterface;
-use App\Model\Page\PageRepositoryInterface;
+use App\Model\Manager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
@@ -16,20 +15,14 @@ class PageAction
     private $templateRenderer;
 
     /**
-     * @var PageRepositoryInterface
+     * @var Manager
      */
-    private $pageRepository;
+    private $manager;
 
-    /**
-     * @var EventRepositoryInterface
-     */
-    private $eventRepository;
-
-    public function __construct(TemplateRendererInterface $templateRenderer, PageRepositoryInterface $pageRepository, EventRepositoryInterface $eventRepository)
+    public function __construct(TemplateRendererInterface $templateRenderer, Manager $manager)
     {
         $this->templateRenderer = $templateRenderer;
-        $this->pageRepository = $pageRepository;
-        $this->eventRepository = $eventRepository;
+        $this->manager = $manager;
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
@@ -37,18 +30,20 @@ class PageAction
         $id = $request->getAttribute('id', 'index');
 
         try {
-            $result = $this->pageRepository->get($id);
+            $page = $this->manager->getRepository('page')->get($id);
         } catch (\Exception $exception) {
             return $next($request, $response);
         }
 
-        $params = array_merge($result->getMetadata(), [
-            'html' => $result->getHtml(),
-            'futureEvents' => $this->eventRepository->getFuture(),
-            'pastEvents' => $this->eventRepository->getPast(),
-        ]);
+        $eventRepository = $this->manager->getRepository('event');
 
-        $template = isset($params['template']) ? $params['template'] : 'page';
+        $params = [
+            'page' => $page,
+            'futureEvents' => $eventRepository->getFuture(),
+            'pastEvents' => $eventRepository->getPast(),
+        ];
+
+        $template = $page->has('template') ? $page->get('template') : 'page';
 
         $html = $this->templateRenderer->render('app::' . $template, $params);
 

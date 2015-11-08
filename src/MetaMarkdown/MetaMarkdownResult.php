@@ -2,9 +2,6 @@
 
 namespace App\MetaMarkdown;
 
-use League\CommonMark\CommonMarkConverter;
-use Symfony\Component\Yaml\Yaml;
-
 class MetaMarkdownResult
 {
     /**
@@ -27,34 +24,6 @@ class MetaMarkdownResult
     {
         $this->metadata = $metadata;
         $this->html = $html;
-    }
-
-    /**
-     * Check the metadata for a value.
-     *
-     * @param string $key
-     *
-     * @return bool
-     */
-    public function has($key)
-    {
-        return isset($this->metadata[$key]);
-    }
-
-    /**
-     * Get metadata value.
-     *
-     * @param string $key
-     *
-     * @return mixed
-     */
-    public function get($key)
-    {
-        if (!$this->has($key)) {
-            throw new \Exception('Key does not exist: ' . $key);
-        }
-
-        return $this->metadata[$key];
     }
 
     /**

@@ -2,12 +2,10 @@
 
 namespace App\Model\Event;
 
-use App\Model\RepositoryTrait;
+use App\Model\Repository;
 
-class EventRepository implements EventRepositoryInterface
+class EventRepository extends Repository implements EventRepositoryInterface
 {
-    use RepositoryTrait;
-
     public function getNext()
     {
         $futureEvents = $this->getFuture();
@@ -26,8 +24,6 @@ class EventRepository implements EventRepositoryInterface
         return $this->filterEvents(function ($id) use ($date) {
             return strcmp($id, $date) < 0;
         });
-
-        return array_filter($events, $pastFilter, ARRAY_FILTER_USE_KEY);
     }
 
     public function getFuture()
@@ -35,10 +31,8 @@ class EventRepository implements EventRepositoryInterface
         $date = date('Y-m-d');
 
         return $this->filterEvents(function ($id) use ($date) {
-            return strcmp($id, $date) > 0;
+            return strcmp($id, $date) >= 0;
         });
-
-        return array_filter($events, $pastFilter, ARRAY_FILTER_USE_KEY);
     }
 
     private function filterEvents(callable $filter)

@@ -17,7 +17,7 @@ class MetaMarkdown
     /**
      * Parse meta markdown.
      *
-     * @param string $contentPath
+     * @param string $content
      *
      * @throws \InvalidArgumentException When content does not exist.
      */

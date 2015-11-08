@@ -1,22 +1,22 @@
-<?php $this->layout('layout::default', ['title' => $title, 'description' => $description]) ?>
+<?php $this->layout('layout::default', ['title' => $event->get('title'), 'description' => $event->get('description')]) ?>
 
 <div class="row">
     <div class="col-xs-12 col-sm-6">
-        <?=$html?>
+        <?=$event->get('html')?>
 
-        <?php if (isset($meetup)): ?>
-            <p><a href="<?=$this->escape($meetup)?>">RSVP on meetup</a></p>
+        <?php if ($event->has('meetup')): ?>
+            <p><a href="<?=$this->escape($event->get('meetup'))?>">RSVP on meetup</a></p>
         <?php endif; ?>
     </div>
     <div class="col-xs-12 col-sm-6">
-        <?php foreach ($talks as $talk): ?>
-            <h3><?=$this->escape($talk['talk']->get('title'))?></h3>
-            <p><i>By <?=$this->escape($talk['speaker']->get('name'))?></i></p>
+        <?php foreach ($event->get('talks') as $talk): ?>
+            <h3><?=$this->escape($talk->get('title'))?></h3>
+            <p><i>By <?=$this->escape($talk->get('speaker')->get('name'))?></i></p>
 
-            <?=$talk['talk']->getHtml()?>
+            <?=$talk->get('html')?>
 
-            <?php if ($talk['talk']->has('joind.in')): ?>
-                <a href="<?=$this->escape($talk['talk']->get('joind.in'))?>">Leave feedback on Joind.in</a>
+            <?php if ($talk->has('joind.in')): ?>
+                <a href="<?=$this->escape($talk->get('joind.in'))?>">Leave feedback on Joind.in</a>
             <?php endif; ?>
         <?php endforeach; ?>
     </div>

@@ -4,7 +4,7 @@ description: We are all meeting at Christmas!
 joind.in: http://joind.in/fooooo
 meetup: http://meetup.com/brap
 talks:
-    - fire-drone
+    - @talk:fire-drone
 ---
 
 # Christmas Meetup

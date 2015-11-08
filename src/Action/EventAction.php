@@ -2,41 +2,24 @@
 
 namespace App\Action;
 
-use App\Model\Event\EventRepositoryInterface;
-use App\Model\Speaker\SpeakerRepositoryInterface;
-use App\Model\Talk\TalkRepositoryInterface;
+use App\Model\Manager;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
 class EventAction
 {
-    /**
-     * @var TemplateRendererInterface
-     */
     private $templateRenderer;
 
     /**
-     * @var EventRepositoryInterface
+     * @var RepositoryManagerInterface
      */
-    private $eventRepository;
+    private $manager;
 
-    /**
-     * @var TalkRepositoryInterface
-     */
-    private $talkRepository;
-
-    /**
-     * @var SpeakerRepositoryInterface
-     */
-    private $speakerRepository;
-
-    public function __construct(TemplateRendererInterface $templateRenderer, EventRepositoryInterface $eventRepository, TalkRepositoryInterface $talkRepository, SpeakerRepositoryInterface $speakerRepository)
+    public function __construct(TemplateRendererInterface $templateRenderer, RepositoryManagerInterface $manager)
     {
         $this->templateRenderer = $templateRenderer;
-        $this->eventRepository = $eventRepository;
-        $this->talkRepository = $talkRepository;
-        $this->speakerRepository = $speakerRepository;
+        $this->manager = $manager;
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
@@ -44,28 +27,14 @@ class EventAction
         $id = $request->getAttribute('id');
 
         try {
-            $result = $this->eventRepository->get($id);
+            $event = $this->manager->getRepository('event')->get($id);
         } catch (\Exception $exception) {
             return $next($request, $response);
         }
 
-        $talks = [];
+        $template = $event->has('template') ? $event->get('template') : 'event';
 
-        foreach (array_map([$this->talkRepository, 'get'], $result->get('talks')) as $talk) {
-            $talks[] = [
-                'talk' => $talk,
-                'speaker' => $this->speakerRepository->get($talk->get('speaker')),
-            ];
-        }
-
-        $params = array_merge($result->getMetadata(), [
-            'html' => $result->getHtml(),
-            'talks' => $talks,
-        ]);
-
-        $template = isset($params['template']) ? $params['template'] : 'event';
-
-        $html = $this->templateRenderer->render('app::' . $template, $params);
+        $html = $this->templateRenderer->render('app::' . $template, ['event' => $event]);
 
         $response->getBody()->write($html);
         return $response->withHeader('Content-Type', 'text/html');

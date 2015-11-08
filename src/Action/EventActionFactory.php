@@ -2,21 +2,24 @@
 
 namespace App\Action;
 
-use App\Model\Event\EventRepositoryInterface;
-use App\Model\Speaker\SpeakerRepositoryInterface;
-use App\Model\Talk\TalkRepositoryInterface;
+use App\Model\RepositoryManagerInterface;
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;
 
 class EventActionFactory
 {
+    /**
+     * Create the EventAction.
+     * 
+     * @param ContainerInterface $container
+     * 
+     * @return EventAction
+     */
     public function __invoke(ContainerInterface $container)
     {
         $templateRenderer = $container->get(TemplateRendererInterface::class);
-        $eventRepository = $container->get(EventRepositoryInterface::class);
-        $talkRepository = $container->get(TalkRepositoryInterface::class);
-        $speakerRepository = $container->get(SpeakerRepositoryInterface::class);
+        $repositoryManager = $container->get(RepositoryManagerInterface::class);
 
-        return new EventAction($templateRenderer, $eventRepository, $talkRepository, $speakerRepository);
+        return new EventAction($templateRenderer, $repositoryManager);
     }
 }
