@@ -37,7 +37,7 @@ abstract class ActionFactory
     {
         $templateRenderer = $container->get(TemplateRendererInterface::class);
         $repositoryManager = $container->get(RepositoryManagerInterface::class);
-        $site = $container->get('config')->site;
+        $site = $container->get('site');
 
         return new $this->actionClass($templateRenderer, $repositoryManager, $site);
     }

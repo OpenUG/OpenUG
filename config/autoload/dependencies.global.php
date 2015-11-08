@@ -3,6 +3,7 @@
 return [
     'dependencies' => [
         'factories' => [
+            'site' => App\SiteFactory::class,
             App\Model\RepositoryManagerInterface::class => App\Model\RepositoryManagerFactory::class,
             Zend\Expressive\Application::class => Zend\Expressive\Container\ApplicationFactory::class,
         ],
@@ -24,5 +25,5 @@ return [
         ],
     ],
 
-    'site' => new App\Model\Entity('site', Symfony\Component\Yaml\Yaml::parse('content/site.yml')),
+    'site-config-path' => 'content/site.yml',
 ];
