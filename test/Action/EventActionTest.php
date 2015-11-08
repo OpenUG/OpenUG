@@ -22,9 +22,7 @@ class EventActionTest extends \PHPUnit_Framework_TestCase
         $templateResult = 'bar';
 
         $event = new Entity($eventId, []);
-
-        $config = new \stdClass;
-        $config->site = new Entity('site', []);
+        $site = new Entity('site', []);
 
         // Setup Mocks
         $repository = new Repository([$eventId => $event]);
@@ -40,7 +38,7 @@ class EventActionTest extends \PHPUnit_Framework_TestCase
         $container = new Container([
             RepositoryManagerInterface::class => $repositoryManager,
             TemplateRendererInterface::class => $templateRenderer,
-            'config' => $config,
+            'site' => $site,
         ]);
 
         // Test Factory
