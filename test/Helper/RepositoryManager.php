@@ -16,7 +16,7 @@ class RepositoryManager implements RepositoryManagerInterface
     public function getRepository($repository)
     {
         if (!isset($this->repositories[$repository])) {
-            throw new Exception;
+            throw new \Exception;
         }
 
         return $this->repositories[$repository];

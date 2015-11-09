@@ -17,7 +17,7 @@ class Repository implements RepositoryInterface
     public function get($id)
     {
         if (!isset($this->entities[$id])) {
-            throw new Exception;
+            throw new \Exception;
         }
 
         return $this->entities[$id];
