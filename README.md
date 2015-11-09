@@ -99,7 +99,4 @@ talks:
 Alice is an example speaker at your user group. You can use this space to write a bio for Alice.
 
 Any talks listed in the metadata section will appear on the right hand side.
----
-
-Alice is a student of some university. In her spare time she saves polar bears and creates drones that spit fire.
 ```
