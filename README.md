@@ -11,9 +11,17 @@ A web app for user groups.
 
 This app is currently being developed. It isn't ready yet.
 
+## Screenshots
+
+Templates can be found in the `templates` directory and are easily modified. The default layout is a simple bootstrap theme. [Plates](http://platesphp.com/) is used to render the templates.
+
+_Index Page_ ![Screenshot #1](http://res.cloudinary.com/radiophp/image/upload/v1447104482/index-screenshot_eeewlw.png)
+
+_Event Page_ ![Screenshot #2](http://res.cloudinary.com/radiophp/image/upload/v1447104482/event-screenshot_qe3jne.png)
+
 ## How To
 
-## Add Pages
+### Add Pages
 
 `content/page/{id}.md`
 
@@ -37,13 +45,13 @@ To edit this page, look for the `content/page/index.md` file. It should look lik
 [OpenUG]: http://github.com/AndrewCarterUK/OpenUG
 ```
 
-## Add Events
+### Add Events
 
 `content/event/{id}.md`
 
 `{id}` must contain the `Y-m-d` prefix.
 
-Example `content/page/2015-12-25-christmas-meetup.md`:
+Example `content/event/2015-12-25-christmas-meetup.md`:
 
 ```md
 ---
@@ -62,7 +70,7 @@ This is an example event for Christmas Day, 2015. Links for joind.in and meetup.
 If present, event talks will also appear on the right hand side of this page.
 ```
 
-## Add Talks
+### Add Talks
 
 `content/talk/{id}.md`
 
@@ -79,7 +87,7 @@ joind.in: http://joind.in/blah
 Learn how to create a fire spitting drone using a Raspberry PI, 10 hair dryers and some tweezers.
 ```
 
-## Add Speakers
+### Add Speakers
 
 `content/speaker/{id}.md`
 
