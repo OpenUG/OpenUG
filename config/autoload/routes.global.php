@@ -15,18 +15,21 @@ return [
     'routes' => [
         [
             'name' => 'page',
+            'type' => 'repository',
             'path' => '/[{id}]',
             'middleware' => App\Action\PageAction::class,
             'allowed_methods' => ['GET'],
         ],
         [
             'name' => 'event',
+            'type' => 'repository',
             'path' => '/event/{id}',
             'middleware' => App\Action\EventAction::class,
             'allowed_methods' => ['GET'],
         ],
         [
             'name' => 'speaker',
+            'type' => 'repository',
             'path' => '/speaker/{id}',
             'middleware' => App\Action\SpeakerAction::class,
             'allowed_methods' => ['GET'],
