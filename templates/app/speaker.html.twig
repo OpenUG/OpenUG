@@ -12,7 +12,17 @@
     {% if speaker.has('talks') %}
         <div class="row">
             <div class="col-xs-12 col-sm-6">
-                {{ speaker.get('html') | raw }}
+                {% block speaker %}
+                    {{ speaker.get('html') | raw }}
+
+                    {% if speaker.has('twitter') %}
+                        <p><i class="fa fa-twitter"></i> <a href="https://twitter.com/{{ speaker.get('twitter') }}">@{{ speaker.get('twitter') }}</a></p>
+                    {% endif %}
+
+                    {% if speaker.has('github') %}
+                        <p><i class="fa fa-github"></i> <a href="https://github.com/{{ speaker.get('github') }}">{{ speaker.get('github') }}</a></p>
+                    {% endif %}
+                {% endblock %}
             </div>
             <div class="col-xs-12 col-sm-6">
                 <h3>Talks</h3>
@@ -33,7 +43,7 @@
                     {{ talk.get('html') | raw }}
 
                     {% if talk.has('joind.in') %}
-                        <a href="{{ talk.get('joind.in') }}">Leave feedback on joind.in</a>
+                        <p><i class="fa fa-commenting"></i> <a href="{{ talk.get('joind.in') }}">Leave feedback on joind.in</a></p>
                     {% endif %}
                 {% endfor %}
             </div>

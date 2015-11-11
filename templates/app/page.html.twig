@@ -15,7 +15,7 @@
         </div>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
             {% if futureEvents | length > 0 %}
-                <h3>Upcoming Events</h3>
+                <h3><i class="fa fa-calendar"></i> Upcoming Events</h3>
                 <ul>
                     {% for futureEvent in futureEvents %}
                         <li>
@@ -28,9 +28,9 @@
             {% endif %}
 
             {% if pastEvents | length > 0 %}
-                <h3>Past Events</h3>
+                <h3><i class="fa fa-history"></i> Past Events</h3>
                 <ul>
-                    {% for pastEvent in pastEvents %}
+                    {% for pastEvent in pastEvents | reverse %}
                         <li>
                             <a href="{{ path('event', { id: pastEvent.getId() }) }}">
                                 {{ pastEvent.get('title') }}

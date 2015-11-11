@@ -1,7 +1,7 @@
 ---
 name: Alice
-from: United Kingdom
-skills: PHP, HTML, CSS, JS
+twitter: alice
+github: alice
 talks:
     - @talk:fire-drone
 ---
