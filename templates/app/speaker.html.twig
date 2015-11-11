@@ -24,7 +24,7 @@
                     <p>
                         <i>
                             At
-                            <a href="/event/{{ talk.get('event').getId() }}">
+                            <a href="{{ path('event', { id: talk.get('event').getId() }) }}">
                                 {{ talk.get('event').get('title') }}
                             </a>
                         </i>

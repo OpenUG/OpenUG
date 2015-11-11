@@ -34,7 +34,7 @@
                     <p>
                         <i>
                             By
-                            <a href="/speaker/{{ talk.get('speaker').getId() }}">
+                            <a href="{{ path('speaker', { id: talk.get('speaker').getId() }) }}">
                                 {{ talk.get('speaker').get('name') }}
                             </a>
                         </i>

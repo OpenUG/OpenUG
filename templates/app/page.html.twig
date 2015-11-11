@@ -19,7 +19,7 @@
                 <ul>
                     {% for futureEvent in futureEvents %}
                         <li>
-                            <a href="/event/{{ futureEvent.getId() }}">
+                            <a href="{{ path('event', { id: futureEvent.getId() }) }}">
                                 {{ futureEvent.get('title') }}
                             </a>
                         </li>
@@ -32,7 +32,7 @@
                 <ul>
                     {% for pastEvent in pastEvents %}
                         <li>
-                            <a href="/event/{{ pastEvent.getId() }}">
+                            <a href="{{ path('event', { id: pastEvent.getId() }) }}">
                                 {{ pastEvent.get('title') }}
                             </a>
                         </li>
