@@ -15,7 +15,7 @@ return [
     'routes' => [
         [
             'name' => 'index',
-            'type' => 'repository',
+            'type' => 'alias',
             'path' => '/',
             'middleware' => App\Action\PageAction::class,
             'allowed_methods' => ['GET'],
