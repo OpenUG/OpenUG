@@ -14,7 +14,7 @@ use App\Test\Helper\RepositoryManager;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequest;
 use Zend\Expressive\Template\TemplateRendererInterface;
-use Zend\Expressive\Plates\PlatesRenderer;
+use Zend\Expressive\Twig\TwigRenderer;
 
 class SimpleActionTest extends \PHPUnit_Framework_TestCase
 {
@@ -33,7 +33,7 @@ class SimpleActionTest extends \PHPUnit_Framework_TestCase
         $repository = new Repository([$entityId => $entity]);
         $repositoryManager = new RepositoryManager([$repositoryName => $repository]);
 
-        $templateRenderer = $this->getMockBuilder(PlatesRenderer::class)->setMethods(['render'])->getMock();
+        $templateRenderer = $this->getMockBuilder(TwigRenderer::class)->setMethods(['render'])->getMock();
         $templateRenderer
             ->expects($this->once())
             ->method('render')

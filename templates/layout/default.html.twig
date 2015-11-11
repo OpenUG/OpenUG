@@ -3,15 +3,17 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title><?=$this->e($title)?></title>
-        <?php if (isset($description)): ?><meta name="description" content="<?=$this->e($description)?>" /><?php endif; ?>
+
+        <title>{{ block('title') | trim }}</title>
+        {% if block('description') is not empty %}<meta name="description" content="{{ block('description') | trim }}" />{% endif %}
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.css" />
     </head>
     <body>
-        <?php if(isset($site)): ?>
+        {% if site is defined %}
             <nav class="navbar navbar-default">
                 <div class="container">
                     <div class="navbar-header">
@@ -22,23 +24,23 @@
                             <span class="icon-bar"></span>
                         </button>
 
-                        <a class="navbar-brand" href="/"><?=$this->e($site->get('name'))?></a>
+                        <a class="navbar-brand" href="/">{{ site.get('name') }}</a>
                     </div>
                     <div class="collapse navbar-collapse" id="navigation-links">
                         <ul class="nav navbar-nav">
-                            <?php foreach ($site->get('navigation') as $href => $label): ?>
-                                <li><a href="<?=$this->e($href)?>"><?=$this->e($label)?></a></li>
-                            <?php endforeach; ?>
+                            {% for navigationLink, navigationLabel in site.get('navigation') %}
+                                <li><a href="{{ navigationLink }}">{{ navigationLabel }}</a></li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
             </nav>
-        <?php endif; ?>
+        {% endif %}
 
         <div class="container">
             <div class="row">
                 <div class="col-xs-12">
-                    <?=$this->section('content');?>
+                    {% block content %}{% endblock %}
                 </div>
             </div>
         </div>

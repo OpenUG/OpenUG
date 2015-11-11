@@ -18,7 +18,7 @@
         "zendframework/zend-expressive-fastroute": "^0.1",
         "zendframework/zend-servicemanager": "^2.5",
         "ocramius/proxy-manager": "^1.0",
-        "zendframework/zend-expressive-platesrenderer": "^0.1",
+        "zendframework/zend-expressive-twigrenderer": "^0.1",
         "league/commonmark": "^0.11.3",
         "symfony/yaml": "^2.7"
     },

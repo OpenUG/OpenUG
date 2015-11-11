@@ -1,0 +1,54 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}
+    {{ event.get('title') }}
+{% endblock %}
+
+{% block description %}
+    {{ event.get('description') }}
+{% endblock %}
+
+{% block content %}
+    {% if event.has('talks') %}
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                {% block event %}
+                    {{ event.get('html') | raw }}
+
+                    {% if event.has('meetup') %}
+                        <p><a href="{{ event.get('meetup') }}">RSVP on meetup.com</a></p>
+                    {% endif %}
+
+                    {% if event.has('joind.in') %}
+                        <p><a href="{{ event.get('joind.in') }}">View event on joind.in</a></p>
+                    {% endif %}
+                {% endblock %}
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <h3>Talks</h3>
+
+                {% for talk in event.get('talks') %}
+                    <hr />
+
+                    <h4>{{ talk.get('title') }}</h4>
+                    <p>
+                        <i>
+                            By
+                            <a href="/speaker/{{ talk.get('speaker').getId() }}">
+                                {{ talk.get('speaker').get('name') }}
+                            </a>
+                        </i>
+                    </p>
+
+                    {{ talk.get('html') | raw }}
+
+                    {% if talk.has('joind.in') %}
+                        <a href="{{ talk.get('joind.in') }}">Leave feedback on joind.in</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        {{ block('event') }}
+    {% endif %}
+{% endblock %}

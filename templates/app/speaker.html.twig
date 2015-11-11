@@ -1,0 +1,44 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}
+    Speaker Profile: {{ speaker.get('name') }}
+{% endblock %}
+
+{% block description %}
+    The speaker profile for {{ speaker.get('name') }} at {{ site.get('name') }}
+{% endblock %}
+
+{% block content %}
+    {% if speaker.has('talks') %}
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                {{ speaker.get('html') | raw }}
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <h3>Talks</h3>
+
+                {% for talk in speaker.get('talks') %}
+                    <hr />
+
+                    <h4>{{ talk.get('title') }}</h4>
+                    <p>
+                        <i>
+                            At
+                            <a href="/event/{{ talk.get('event').getId() }}">
+                                {{ talk.get('event').get('title') }}
+                            </a>
+                        </i>
+                    </p>
+
+                    {{ talk.get('html') | raw }}
+
+                    {% if talk.has('joind.in') %}
+                        <a href="{{ talk.get('joind.in') }}">Leave feedback on joind.in</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        {{ speaker.get('html') | raw }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}
+    {{ page.get('title') }}
+{% endblock %}
+
+{% block description %}
+    {{ page.get('description') }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
+            {{ page.get('html') | raw }}
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            {% if futureEvents | length > 0 %}
+                <h3>Upcoming Events</h3>
+                <ul>
+                    {% for futureEvent in futureEvents %}
+                        <li>
+                            <a href="/event/{{ futureEvent.getId() }}">
+                                {{ futureEvent.get('title') }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% if pastEvents | length > 0 %}
+                <h3>Past Events</h3>
+                <ul>
+                    {% for pastEvent in pastEvents %}
+                        <li>
+                            <a href="/event/{{ pastEvent.getId() }}">
+                                {{ pastEvent.get('title') }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
