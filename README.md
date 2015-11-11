@@ -13,7 +13,7 @@ This project is currently being developed. It isn't ready yet.
 
 ## Screenshots
 
-Templates can be found in the `templates` directory and are easily modified. The default layout is a simple bootstrap theme. [Plates](http://platesphp.com/) is used to render the templates.
+Templates can be found in the `templates` directory and are easily modified. The default layout is a simple bootstrap theme. [Twig](http://twig.sensiolabs.org/) is used as a templating engine.
 
 _Index Page_ ![Screenshot #1](http://res.cloudinary.com/radiophp/image/upload/v1447104482/index-screenshot_eeewlw.png)
 
