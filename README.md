@@ -5,11 +5,11 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/AndrewCarterUK/OpenUG/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/AndrewCarterUK/OpenUG/?branch=master)
 [![Code Climate](https://codeclimate.com/github/AndrewCarterUK/OpenUG/badges/gpa.svg)](https://codeclimate.com/github/AndrewCarterUK/OpenUG)
 
-A web app for user groups.
+An open source framework for building user group websites.
 
 ## Status
 
-This app is currently being developed. It isn't ready yet.
+This project is currently being developed. It isn't ready yet.
 
 ## Screenshots
 
